@@ -6,7 +6,6 @@ import imgGabriel from "@/img/lima.jpeg";
 import linkedinIcon from "@/img/linkedin.jpg";
 import githubIcon from "@/img/github.jpg";
 
-const myVariable: any = "some value";
 const Integrantes: React.FC = () => {
   return (
     <section className="integrantes">
@@ -28,8 +27,8 @@ const Integrantes: React.FC = () => {
               <p className="turma">Turma: 1TDSPW</p>
               <p className="ano">1 ANO</p>
               <p className="resumo">
-                Entusiasta de técnologia com foco em Ciência de dados, Backend e
-                Desing
+                Entusiasta de tecnologia com foco em Ciência de Dados, Backend e
+                Design.
               </p>
               <div className="links">
                 <a
@@ -76,7 +75,7 @@ const Integrantes: React.FC = () => {
               <p className="faculdade">FIAP</p>
               <p className="turma">Turma: 1TDSPW</p>
               <p className="ano">1 ANO</p>
-              <p className="resumo">Full-stack developer & cloud Engineer</p>
+              <p className="resumo">Full-stack Developer & Cloud Engineer</p>
               <div className="links">
                 <a
                   href="https://www.linkedin.com/in/gabriel-marques-lima/"

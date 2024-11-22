@@ -12,7 +12,6 @@ type PontoDescarte = {
   numPonto: number;
 };
 
-const myVariable: any = "some value";
 const estadosECidades: { [estado: string]: string[] } = {
   AC: ["Rio Branco", "Cruzeiro do Sul", "Sena Madureira", "Tarauacá"],
   AL: ["Maceió", "Arapiraca", "Palmeira dos Índios", "Rio Largo"],
@@ -43,7 +42,7 @@ const estadosECidades: { [estado: string]: string[] } = {
   TO: ["Palmas", "Araguaína", "Gurupi", "Porto Nacional"],
 };
 
-const Formulario = () => {
+const Formulario: React.FC = () => {
   const [estadoSelecionado, setEstadoSelecionado] = useState<string>("");
   const [cidadeSelecionada, setCidadeSelecionada] = useState<string>("");
   const [cidades, setCidades] = useState<string[]>([]);

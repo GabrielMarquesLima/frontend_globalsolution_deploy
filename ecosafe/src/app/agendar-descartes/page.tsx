@@ -4,28 +4,26 @@ import FormField from "../../components/agendar-descartes/FormField";
 import SolicitationCard from "../../components/agendar-descartes/SolicitationCard";
 import { SolicitacaoDescarte, PontoDescarte } from "../../types/types";
 
-
-const myVariable: any = "some value";
 const AgendarDescarte: React.FC = () => {
   const [isCnpj, setIsCnpj] = useState(true);
-  const [cnpjCpf, setCnpjCpf] = useState("");
-  const [numeroContato, setNumeroContato] = useState("");
-  const [cep, setCep] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [uf, setUf] = useState("");
-  const [cidade, setCidade] = useState("");
+  const [cnpjCpf, setCnpjCpf] = useState<string>("");
+  const [numeroContato, setNumeroContato] = useState<string>("");
+  const [cep, setCep] = useState<string>("");
+  const [logradouro, setLogradouro] = useState<string>("");
+  const [uf, setUf] = useState<string>("");
+  const [cidade, setCidade] = useState<string>("");
   const [numeroEmpresa, setNumeroEmpresa] = useState<number | "">("");
-  const [tipoCaminhao, setTipoCaminhao] = useState("");
-  const [valorServico, setValorServico] = useState(0);
-  const [formaPagamento, setFormaPagamento] = useState("");
-  const [dataHora, setDataHora] = useState("");
+  const [tipoCaminhao, setTipoCaminhao] = useState<string>("");
+  const [valorServico, setValorServico] = useState<number>(0);
+  const [formaPagamento, setFormaPagamento] = useState<string>("");
+  const [dataHora, setDataHora] = useState<string>("");
   const [pontos, setPontos] = useState<PontoDescarte[]>([]);
   const [idPonto, setIdPonto] = useState<number | "">("");
   const [formError, setFormError] = useState<string>("");
   const [solicitacoes, setSolicitacoes] = useState<SolicitacaoDescarte[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // busca os pontos com base na uf e cidade (selecionado automaticamente com base no cep inserido pelo usuárioo)
+  // Busca os pontos de descarte com base no CEP
   useEffect(() => {
     if (uf && cidade) {
       fetch(`http://localhost:8080/pontos?uf=${uf}&cidade=${cidade}`)
@@ -36,7 +34,7 @@ const AgendarDescarte: React.FC = () => {
   }, [uf, cidade]);
 
   // Carregar solicitações
-  const carregarSolicitacoes = async () => {
+  const carregarSolicitacoes = async (): Promise<void> => {
     setLoading(true);
     try {
       const response = await fetch("http://localhost:8080/solicitacoes");
@@ -53,25 +51,13 @@ const AgendarDescarte: React.FC = () => {
     carregarSolicitacoes();
   }, []);
 
-  // setando o valor do serviço com base no tanasnho do caminhão
+  // Setando o valor do serviço com base no tipo do caminhão
   useEffect(() => {
-    switch (tipoCaminhao) {
-      case "Pequeno":
-        setValorServico(80);
-        break;
-      case "Médio":
-        setValorServico(140);
-        break;
-      case "Grande":
-        setValorServico(200);
-        break;
-      default:
-        setValorServico(0);
-        break;
-    }
+    const valores = { Pequeno: 80, Médio: 140, Grande: 200 };
+    setValorServico(valores[tipoCaminhao] || 0);
   }, [tipoCaminhao]);
 
-  const buscarCep = async (cep: string) => {
+  const buscarCep = async (cep: string): Promise<void> => {
     if (cep.length < 8) return;
     try {
       const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -91,7 +77,7 @@ const AgendarDescarte: React.FC = () => {
     }
   };
 
-  const agendarBusca = async () => {
+  const agendarBusca = async (): Promise<void> => {
     if (
       !cnpjCpf ||
       !numeroContato ||
@@ -154,7 +140,7 @@ const AgendarDescarte: React.FC = () => {
     }
   };
 
-  const limparFormulario = () => {
+  const limparFormulario = (): void => {
     setCnpjCpf("");
     setNumeroContato("");
     setCep("");
@@ -167,7 +153,6 @@ const AgendarDescarte: React.FC = () => {
     setDataHora("");
     setIdPonto("");
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-gray-200 py-10">
       <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">

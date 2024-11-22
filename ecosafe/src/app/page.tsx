@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-const myVariable: any = "some value";
 export default function Home() {
   return (
     <div className="page bg-gray-100 min-h-screen flex flex-col">
@@ -15,7 +14,7 @@ export default function Home() {
 
       <main className="main flex-grow px-4 py-12">
         <section className="content text-center mb-16">
-          <h2 className="text-3xl font-semibold text-white-700">
+          <h2 className="text-3xl font-semibold text-gray-700">
             Contribua para um futuro sustentável
           </h2>
           <p className="mt-4 text-gray-700 max-w-2xl mx-auto">
@@ -71,7 +70,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-black">1. Reúna seus eletrônicos</h3>
+              <h3 className="text-xl font-bold text-black">
+                1. Reúna seus eletrônicos
+              </h3>
               <p className="mt-2 text-gray-600">
                 Separe todos os dispositivos eletrônicos que não estão mais em
                 uso.
@@ -94,7 +95,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-black">2. Encontre um ponto de descarte</h3>
+              <h3 className="text-xl font-bold text-black">
+                2. Encontre um ponto de descarte
+              </h3>
               <p className="mt-2 text-gray-600">
                 Use nosso mapa para localizar o ponto de descarte mais próximo.
               </p>
@@ -116,7 +119,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-black">3. Descarte com responsabilidade</h3>
+              <h3 className="text-xl font-bold text-black">
+                3. Descarte com responsabilidade
+              </h3>
               <p className="mt-2 text-gray-600">
                 Entregue seus eletrônicos no ponto selecionado ou agende uma
                 coleta para sua empresa.
@@ -132,14 +137,22 @@ export default function Home() {
           <div className="stats grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="stat">
               <h3 className="text-2xl font-bold text-green-600">+1 Milhão</h3>
-              <p className="mt-2 text-gray-600">Dispositivos Reciclados Anualmente</p>
+              <p className="mt-2 text-gray-600">
+                Dispositivos Reciclados Anualmente
+              </p>
             </div>
             <div className="stat">
-              <h3 className="text-2xl font-bold text-green-600">Redução de 500 Toneladas</h3>
-              <p className="mt-2 text-gray-600">de Resíduos no Meio Ambiente</p>
+              <h3 className="text-2xl font-bold text-green-600">
+                Redução de 500 Toneladas
+              </h3>
+              <p className="mt-2 text-gray-600">
+                de Resíduos no Meio Ambiente
+              </p>
             </div>
             <div className="stat">
-              <h3 className="text-2xl font-bold text-green-600">Economia de 200 Mil</h3>
+              <h3 className="text-2xl font-bold text-green-600">
+                Economia de 200 Mil
+              </h3>
               <p className="mt-2 text-gray-600">em Recursos Naturais</p>
             </div>
           </div>

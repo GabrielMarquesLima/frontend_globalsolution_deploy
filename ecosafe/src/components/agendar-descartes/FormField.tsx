@@ -1,7 +1,6 @@
 import React from "react";
 import { FormFieldProps } from "../../types/types";
 
-const myVariable: any = "some value";
 const FormField: React.FC<FormFieldProps> = ({
   label,
   value,
@@ -18,7 +17,7 @@ const FormField: React.FC<FormFieldProps> = ({
         <select
           value={value}
           onChange={onChange}
-          className="w-full p-3 border rounded shadow-sm bg-white"
+          className="w-full p-3 border rounded shadow-sm bg-white focus:outline-none focus:ring focus:ring-green-500"
         >
           <option value="" disabled>
             {placeholder}
@@ -42,7 +41,7 @@ const FormField: React.FC<FormFieldProps> = ({
         placeholder={placeholder}
         onChange={onChange}
         readOnly={readOnly}
-        className={`w-full p-3 border rounded shadow-sm ${
+        className={`w-full p-3 border rounded shadow-sm focus:outline-none focus:ring focus:ring-green-500 ${
           readOnly ? "bg-gray-100 cursor-not-allowed" : ""
         }`}
       />

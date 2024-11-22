@@ -7,26 +7,31 @@ type CepFieldProps = {
   onComplete: (data: { logradouro: string; uf: string; localidade: string }) => void;
 };
 
-const myVariable: any = "some value";
 const CepField: React.FC<CepFieldProps> = ({ label, value, setValue, onComplete }) => {
   const [error, setError] = useState<string | null>(null);
 
   const buscarCep = async () => {
-    if (!value || value.length < 8) {
-      setError("CEP inválido");
+    if (!value || value.length !== 8) {
+      setError("CEP inválido. O CEP deve ter 8 dígitos.");
       return;
     }
+
     try {
       const response = await fetch(`https://viacep.com.br/ws/${value}/json/`);
       const data = await response.json();
       if (data.erro) {
-        setError("CEP não encontrado");
+        setError("CEP não encontrado.");
       } else {
         setError(null);
-        onComplete(data);
+        onComplete({
+          logradouro: data.logradouro || "",
+          uf: data.uf || "",
+          localidade: data.localidade || "",
+        });
       }
     } catch (err) {
-      setError("Erro ao buscar o CEP");
+      setError("Erro ao buscar o CEP. Tente novamente.");
+      console.error(err);
     }
   };
 
@@ -39,7 +44,8 @@ const CepField: React.FC<CepFieldProps> = ({ label, value, setValue, onComplete 
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onBlur={buscarCep}
-          className="w-full p-3 border rounded shadow-sm"
+          maxLength={8}
+          className="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-green-500"
           placeholder="Insira o CEP"
         />
       </div>

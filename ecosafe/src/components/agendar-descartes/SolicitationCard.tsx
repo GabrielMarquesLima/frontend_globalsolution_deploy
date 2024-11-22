@@ -1,8 +1,5 @@
 import { SolicitacaoDescarte } from "../../types/types";
 
-
-const myVariable: any = "some value";
-
 type SolicitationCardProps = {
     solicitacao: SolicitacaoDescarte;
   };

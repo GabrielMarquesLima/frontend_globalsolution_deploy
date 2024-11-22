@@ -2,12 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 
-const myVariable: any = "some value";
 const Dashboard: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [response, setResponse] = useState<any>(null);
-  const [metrics, setMetrics] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false); 
+  const [metrics, setMetrics] = useState<{
+    materiais_reciclados_kg?: number;
+    co2_evitado_kg?: number;
+    energia_economizada_kwh?: number;
+    agua_economizada_litros?: number;
+  } | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const electronicItems = [
@@ -78,9 +82,7 @@ const Dashboard: React.FC = () => {
           Dashboard de Sustentabilidade
         </h1>
 
-        {error && (
-          <p className="text-red-500 text-center mb-4">{error}</p>
-        )}
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div className="bg-green-50 p-4 rounded-lg shadow">
