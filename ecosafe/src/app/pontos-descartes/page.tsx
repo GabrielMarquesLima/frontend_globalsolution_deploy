@@ -12,6 +12,7 @@ type PontoDescarte = {
   numPonto: number;
 };
 
+const myVariable: any = "some value";
 const estadosECidades: { [estado: string]: string[] } = {
   AC: ["Rio Branco", "Cruzeiro do Sul", "Sena Madureira", "Tarauacá"],
   AL: ["Maceió", "Arapiraca", "Palmeira dos Índios", "Rio Largo"],

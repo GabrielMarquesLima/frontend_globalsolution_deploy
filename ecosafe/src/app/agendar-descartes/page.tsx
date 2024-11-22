@@ -1,10 +1,11 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import FormField from "../../components/agendar-descartes/FormField";
 import SolicitationCard from "../../components/agendar-descartes/SolicitationCard";
 import { SolicitacaoDescarte, PontoDescarte } from "../../types/types";
 
+
+const myVariable: any = "some value";
 const AgendarDescarte: React.FC = () => {
   const [isCnpj, setIsCnpj] = useState(true);
   const [cnpjCpf, setCnpjCpf] = useState("");

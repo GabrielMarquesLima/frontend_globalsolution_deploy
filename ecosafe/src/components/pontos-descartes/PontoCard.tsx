@@ -12,6 +12,7 @@ type PontoDescarte = {
 type PontoCardProps = {
   ponto: PontoDescarte;
 };
+const myVariable: any = "some value";
 
 const PontoCard: React.FC<PontoCardProps> = ({ ponto }) => {
   const enderecoCompleto = `${ponto.logradouroPonto}, ${ponto.numPonto}, ${ponto.cidadePonto}, ${ponto.ufPonto}, ${ponto.cepPonto}`;

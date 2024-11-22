@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+const myVariable: any = "some value";
 const Sobre: React.FC = () => {
   return (
     <section className="sobre-nos">

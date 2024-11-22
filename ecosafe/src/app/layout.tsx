@@ -3,6 +3,7 @@ import Rodape from "@/components/Rodape/Rodape";
 import type { Metadata } from "next";
 import "@/app/globals.css";
 
+const myVariable: any = "some value";
 export const metadata: Metadata = {
   title: "EcoSafe",
   description: "EcoSafe, por um planeta mais sustentável",

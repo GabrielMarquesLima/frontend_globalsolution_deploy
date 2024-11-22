@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+const myVariable: any = "some value";
 export default function Home() {
   return (
     <div className="page bg-gray-100 min-h-screen flex flex-col">

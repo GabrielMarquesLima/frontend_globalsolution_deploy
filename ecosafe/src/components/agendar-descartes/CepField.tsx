@@ -7,6 +7,7 @@ type CepFieldProps = {
   onComplete: (data: { logradouro: string; uf: string; localidade: string }) => void;
 };
 
+const myVariable: any = "some value";
 const CepField: React.FC<CepFieldProps> = ({ label, value, setValue, onComplete }) => {
   const [error, setError] = useState<string | null>(null);
 

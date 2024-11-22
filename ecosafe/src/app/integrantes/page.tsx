@@ -6,6 +6,7 @@ import imgGabriel from "@/img/lima.jpeg";
 import linkedinIcon from "@/img/linkedin.jpg";
 import githubIcon from "@/img/github.jpg";
 
+const myVariable: any = "some value";
 const Integrantes: React.FC = () => {
   return (
     <section className="integrantes">

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 
+const myVariable: any = "some value";
 const Dashboard: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [response, setResponse] = useState<any>(null);

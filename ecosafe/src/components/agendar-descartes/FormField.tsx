@@ -1,6 +1,7 @@
 import React from "react";
 import { FormFieldProps } from "../../types/types";
 
+const myVariable: any = "some value";
 const FormField: React.FC<FormFieldProps> = ({
   label,
   value,
