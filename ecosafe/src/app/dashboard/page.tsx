@@ -2,15 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 
+type Metrics = {
+  materiais_reciclados_kg?: number;
+  co2_evitado_kg?: number;
+  energia_economizada_kwh?: number;
+  agua_economizada_litros?: number;
+};
+
+type ResponseItem = {
+  lixo: string;
+  processo: string;
+  impacto: string;
+};
+
 const Dashboard: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [response, setResponse] = useState<any>(null);
-  const [metrics, setMetrics] = useState<{
-    materiais_reciclados_kg?: number;
-    co2_evitado_kg?: number;
-    energia_economizada_kwh?: number;
-    agua_economizada_litros?: number;
-  } | null>(null);
+  const [response, setResponse] = useState<ResponseItem[] | null>(null);
+  const [metrics, setMetrics] = useState<Metrics | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +43,7 @@ const Dashboard: React.FC = () => {
         if (!res.ok) {
           throw new Error(`Erro ao buscar métricas: ${res.statusText}`);
         }
-        const data = await res.json();
+        const data: Metrics = await res.json();
         setMetrics(data);
       } catch (err) {
         setError("Não foi possível carregar as métricas. Tente novamente.");
@@ -65,7 +73,7 @@ const Dashboard: React.FC = () => {
         throw new Error(`Erro ao processar lixos: ${res.statusText}`);
       }
 
-      const data = await res.json();
+      const data: { resultados: ResponseItem[] } = await res.json();
       setResponse(data.resultados);
     } catch (err) {
       setError("Erro ao processar o descarte. Tente novamente.");
@@ -148,7 +156,7 @@ const Dashboard: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Resultado do Processamento
           </h2>
-          {response.map((res: any) => (
+          {response.map((res) => (
             <div
               key={res.lixo}
               className="bg-gray-50 border-l-4 border-green-500 p-4 rounded mb-4"
