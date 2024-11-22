@@ -5,7 +5,7 @@ import SolicitationCard from "../../components/agendar-descartes/SolicitationCar
 import { SolicitacaoDescarte, PontoDescarte } from "../../types/types";
 
 const AgendarDescarte: React.FC = () => {
-  const [isCnpj, setIsCnpj] = useState(true);
+  const [isCnpj, setIsCnpj] = useState<boolean>(true);
   const [cnpjCpf, setCnpjCpf] = useState<string>("");
   const [numeroContato, setNumeroContato] = useState<string>("");
   const [cep, setCep] = useState<string>("");
@@ -13,7 +13,7 @@ const AgendarDescarte: React.FC = () => {
   const [uf, setUf] = useState<string>("");
   const [cidade, setCidade] = useState<string>("");
   const [numeroEmpresa, setNumeroEmpresa] = useState<number | "">("");
-  const [tipoCaminhao, setTipoCaminhao] = useState<string>("");
+  const [tipoCaminhao, setTipoCaminhao] = useState<"Pequeno" | "Médio" | "Grande" | "">("");
   const [valorServico, setValorServico] = useState<number>(0);
   const [formaPagamento, setFormaPagamento] = useState<string>("");
   const [dataHora, setDataHora] = useState<string>("");
@@ -23,7 +23,6 @@ const AgendarDescarte: React.FC = () => {
   const [solicitacoes, setSolicitacoes] = useState<SolicitacaoDescarte[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Busca os pontos de descarte com base no CEP
   useEffect(() => {
     if (uf && cidade) {
       fetch(`http://localhost:8080/pontos?uf=${uf}&cidade=${cidade}`)
@@ -33,7 +32,6 @@ const AgendarDescarte: React.FC = () => {
     }
   }, [uf, cidade]);
 
-  // Carregar solicitações
   const carregarSolicitacoes = async (): Promise<void> => {
     setLoading(true);
     try {
@@ -51,10 +49,15 @@ const AgendarDescarte: React.FC = () => {
     carregarSolicitacoes();
   }, []);
 
-  // Setando o valor do serviço com base no tipo do caminhão
   useEffect(() => {
-    const valores = { Pequeno: 80, Médio: 140, Grande: 200 };
-    setValorServico(valores[tipoCaminhao] || 0);
+    const valores: { [key in "Pequeno" | "Médio" | "Grande"]: number } = {
+      Pequeno: 80,
+      Médio: 140,
+      Grande: 200,
+    };
+    if (tipoCaminhao) {
+      setValorServico(valores[tipoCaminhao] || 0);
+    }
   }, [tipoCaminhao]);
 
   const buscarCep = async (cep: string): Promise<void> => {
@@ -153,6 +156,7 @@ const AgendarDescarte: React.FC = () => {
     setDataHora("");
     setIdPonto("");
   };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-gray-200 py-10">
       <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">
@@ -235,7 +239,7 @@ const AgendarDescarte: React.FC = () => {
           <FormField
             label="Tipo de Caminhão"
             value={tipoCaminhao}
-            onChange={(e) => setTipoCaminhao(e.target.value)}
+            onChange={(e) => setTipoCaminhao(e.target.value as "Pequeno" | "Médio" | "Grande")}
             options={[
               { value: "Pequeno", label: "Pequeno" },
               { value: "Médio", label: "Médio" },
